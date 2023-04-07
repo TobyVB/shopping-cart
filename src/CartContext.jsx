@@ -1,5 +1,5 @@
 import { createContext, useState } from "react";
-import { productsArray } from "./productsStore";
+import { productsArray, getProductData } from "./productsStore";
 
 export const CartContext = createContext({
   items: [],
@@ -11,7 +11,7 @@ export const CartContext = createContext({
 });
 
 export function CartProvider({ children }) {
-  const [cartProducts, setCaartProducts] = useState([]);
+  const [cartProducts, setCartProducts] = useState([]);
 
   function getProductQuantity(id) {
     cartProducts.find((product) => product.id === id)?.quantity;
@@ -23,6 +23,49 @@ export function CartProvider({ children }) {
 
   function addOneToCart(id) {
     const quantity = getProductQuantity(id);
+
+    if (quantity === 0) {
+      // product is not in cart
+      setCartProducts([...cartProducts, { id: id, quantity: 1 }]);
+    } else {
+      // product is in cart
+      setCartProducts(
+        cartProducts.map((product) =>
+          product.id === id
+            ? { ...product, quantity: product.quantity + 1 }
+            : product
+        )
+      );
+    }
+  }
+  function deleteFromCart(id) {
+    setCartProducts((cartProducts) =>
+      cartProducts.filter((currentProduct) => {
+        return currentProduct.id != id;
+      })
+    );
+  }
+  function removeOneFromCart(id) {
+    const quantity = getProductQuantity(id);
+
+    if (quantity == 1) {
+      deleteFromCart(id);
+    } else {
+      setCartProducts(
+        cartProducts.map((product) =>
+          product.id === id
+            ? { ...product, quantity: product.quantity - 1 }
+            : product
+        )
+      );
+    }
+  }
+
+  function getTotalCost() {
+    let totalCost = 0;
+    cartProducts.map((cartItem) => {
+      const productData = getProductData(cartItem.id); //45:42 min on video
+    });
   }
 
   const contextValue = {
