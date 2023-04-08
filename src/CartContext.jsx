@@ -14,7 +14,9 @@ export default function CartProvider({ children }) {
   const [cartProducts, setCartProducts] = useState([]);
 
   function getProductQuantity(id) {
-    cartProducts.find((product) => product.id === id)?.quantity;
+    const quantity = cartProducts.find(
+      (product) => product.id === id
+    )?.quantity;
     if (quantity === undefined) {
       return 0;
     }
