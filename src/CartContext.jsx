@@ -10,7 +10,7 @@ export const CartContext = createContext({
   getTotalCost: () => {},
 });
 
-export function CartProvider({ children }) {
+export default function CartProvider({ children }) {
   const [cartProducts, setCartProducts] = useState([]);
 
   function getProductQuantity(id) {
@@ -64,8 +64,10 @@ export function CartProvider({ children }) {
   function getTotalCost() {
     let totalCost = 0;
     cartProducts.map((cartItem) => {
-      const productData = getProductData(cartItem.id); //45:42 min on video
+      const productData = getProductData(cartItem.id);
+      totalCost += productData.price * cartItem.quantity;
     });
+    return totalCost;
   }
 
   const contextValue = {
