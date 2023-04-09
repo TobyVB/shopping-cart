@@ -21,4 +21,3 @@ export default function CartProduct(props) {
     </>
   );
 }
-// video 1:01:15

@@ -1,16 +1,17 @@
+// Camera: price_1MuoCgGVspIjpNnos2vkPSef
 const productsArray = [
   {
-    id: "1",
+    id: "price_1MuoziGVspIjpNnoOSyqo6ve",
     title: "Coffee",
     price: 4.99,
   },
   {
-    id: "2",
+    id: "price_1Mup0aGVspIjpNnod79YlOIG",
     title: "Sunglasses",
     price: 9.99,
   },
   {
-    id: "3",
+    id: "price_1Mup1SGVspIjpNnoIYvVX1AS",
     title: "Camera",
     price: 39.99,
   },
